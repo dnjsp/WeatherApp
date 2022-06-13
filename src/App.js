@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 
 // 1. 앱이 실행되자마자 현재 위치 기반의 날씨가 보임
@@ -8,6 +9,18 @@ import './App.css';
 // 6. 데이터를 들고 오는 동안 로딩 스피너가 돔
 
 function App() {
+
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      console.log(lat, lon)
+    });
+  }
+
+  useEffect(() => {
+    getCurrentLocation()
+  }, [])
   return (
     <div>
       hi
