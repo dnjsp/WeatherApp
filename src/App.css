@@ -1,0 +1,24 @@
+body {
+  background: url(https://www.pixelstalk.net/wp-content/uploads/2016/07/Download-Free-Weather-Background-620x349.jpg);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.weather-box {
+  border: 3px solid white;
+  padding: 70px 100px;
+  border-radius: 30px;
+  background-color: rgb(0, 0, 0, 0.4);
+  text-align: center;
+  font-weight: 600;
+}
