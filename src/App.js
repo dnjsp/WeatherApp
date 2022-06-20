@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   const [weather, setWeather] = useState(null)
+  const [city, setCity] = useState('');
   const cities = ['paris', 'new york', 'tokyo', 'seoul']
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -30,14 +31,25 @@ function App() {
     setWeather(data);
   }
 
+  const getWeatherByCity = async () => {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=15da840d3eaee25dbb1a97cba2315a72&units=metric`
+    let response = await fetch(url); // await 사용하려면 함수가 async여야 함 (비동기적으로 처리 -> 기다리는 중)
+    let data = await response.json();
+    setWeather(data);
+  }
   useEffect(() => {
-    getCurrentLocation()
-  }, [])
+    if (city == "") {
+      getCurrentLocation()
+    } else {
+      getWeatherByCity()
+    }
+  }, [city])
+
   return (
     <div>
       <div className='container'>
         <WeatherBox weather={weather} />
-        <WeatherButton cities={cities} />
+        <WeatherButton cities={cities} setCity={setCity} />
       </div>
     </div>
   );
